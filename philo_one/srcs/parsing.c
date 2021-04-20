@@ -30,15 +30,15 @@ int ft_checkargs(int argc, char **argv)
 int ft_get_my_values(t_struct *st, char **argv)
 {
     st->nbr_of_philo = ft_atoi(argv[1]);
-    st->time_to_die = ft_atoi(argv[2]);
-    st->time_to_eat = ft_atoi(argv[3]);
-    st->time_to_sleep = ft_atoi(argv[4]);
     if (st->nbr_of_philo < 2)
         return (0);
+    st->time_to_die = ft_atoi(argv[2]);
     if (st->time_to_die < 0)
         return (0);
+    st->time_to_eat = ft_atoi(argv[3]);
     if (st->time_to_eat < 0)
         return (0);
+    st->time_to_sleep = ft_atoi(argv[4]);
     if (st->time_to_eat < 0)
         return (0);
     if (argv[5])
