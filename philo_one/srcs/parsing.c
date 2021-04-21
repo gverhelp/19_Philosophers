@@ -48,6 +48,22 @@ int ft_get_my_values(t_struct *st, char **argv)
     return (1);
 }
 
+int ft_give_philo_id(t_struct *st)
+{
+    int a;
+
+    a = 0;
+    st->philo_id = malloc(sizeof(int) * st->nbr_of_philo);
+    if (!st->philo_id)
+        return (0);
+    while (a < st->nbr_of_philo)
+    {
+        st->philo_id[a] = a + 1;
+        a++;
+    }
+    return (1);
+}
+
 int ft_parsing(t_struct *st, int argc, char **argv)
 {
     if (!ft_checkargs(argc, argv))
@@ -57,5 +73,7 @@ int ft_parsing(t_struct *st, int argc, char **argv)
         write(2, "Invalid arguments\n", 18);
         return (0);
     }
+    if (!ft_give_philo_id(st))
+        return (0);
     return (1);
 }

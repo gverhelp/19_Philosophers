@@ -10,13 +10,18 @@
 
 typedef struct s_struct t_struct;
 
-struct          s_struct
+struct              s_struct
 {
-    int         nbr_of_philo;
-    int         time_to_die;
-    int         time_to_eat;
-    int         time_to_sleep;
-    int         nbr_of_time_each_philo_must_eat;
+    int             nbr_of_philo;
+    int             time_to_die;
+    int             time_to_eat;
+    int             time_to_sleep;
+    int             nbr_of_time_each_philo_must_eat;
+    int             *philo_id;
+    int             istheend;
+    pthread_t       *thread;
+    pthread_t       thread_time;
+    pthread_mutex_t *mutex;
 };
 
 /////////// main /////////////
@@ -28,6 +33,16 @@ void ft_init_struct(t_struct *st);
 int ft_parsing(t_struct *st, int argc, char **argv);
 int ft_checkargs(int argc, char **argv);
 int ft_get_my_values(t_struct *st, char **argv);
+int ft_give_philo_id(t_struct *st);
+
+////////// Start philo ////////
+
+int ft_start_philo(t_struct *st);
+int ft_init_threads(t_struct *st);
+
+////////// Routine /////////////
+
+void *ft_routine(void *philo);
 
 ////////// Utils //////////////
 
