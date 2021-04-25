@@ -32,6 +32,7 @@ int ft_get_my_values(t_struct *st, char **argv)
     st->nbr_of_philo = ft_atoi(argv[1]);
     if (st->nbr_of_philo < 2)
         return (0);
+    st->forks = st->nbr_of_philo;
     st->time_to_die = ft_atoi(argv[2]);
     if (st->time_to_die < 0)
         return (0);
@@ -59,6 +60,15 @@ int ft_give_philo_id(t_struct *st)
     while (a < st->nbr_of_philo)
     {
         st->philo_id[a] = a + 1;
+        a++;
+    }
+    st->when_did_you_eat = (long int *)malloc(sizeof(long int) * st->nbr_of_philo);
+    if (!st->when_did_you_eat)
+        return (0);
+    a = 0;
+    while (a < st->nbr_of_philo)
+    {
+        st->when_did_you_eat[a] = 0;
         a++;
     }
     return (1);

@@ -18,7 +18,10 @@ struct              s_struct
     int             time_to_sleep;
     int             nbr_of_time_each_philo_must_eat;
     int             *philo_id;
-    int             istheend;
+    int             do_we_have_a_dead;
+    long int        *when_did_you_eat;
+    int             forks;
+    long int        timer;
     pthread_t       *thread;
     pthread_t       thread_time;
     pthread_mutex_t *mutex;
@@ -43,13 +46,24 @@ int ft_init_threads(t_struct *st);
 ////////// Routine /////////////
 
 void *ft_routine(void *philo);
+int ft_philo_is_thinking(t_struct *st, int my_philo);
+int ft_philo_is_eating(t_struct *st, int my_philo);
+int ft_philo_is_sleeping(t_struct *st, int my_philo);
+
+
+//////////// Time /////////////
+
+void *ft_time(void *arg);
+int long ft_get_time(t_struct *st);
 
 ////////// Utils //////////////
 
-int	ft_isdigit(char *str);
+void ft_init_struct(t_struct *st);
+t_struct *ft_get_my_struct(void);
 
 ////////// libft /////////////
 
 int	ft_atoi(const char *str);
+int	ft_isdigit(char *str);
 
 #endif

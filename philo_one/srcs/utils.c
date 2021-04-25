@@ -1,15 +1,22 @@
 #include "../include/philo_one.h"
 
-int	ft_isdigit(char *str)
+void ft_init_struct(t_struct *st)
 {
-    int a;
+    st->nbr_of_philo = 0;
+    st->time_to_die = 0;
+    st->time_to_eat = 0;
+    st->time_to_sleep = 0;
+    st->nbr_of_time_each_philo_must_eat = 0;
+    st->philo_id = NULL;
+    st->do_we_have_a_dead = 0;
+    st->when_did_you_eat = 0;
+    st->forks = 0;
+    st->timer = 0;
+}
 
-    a = 0;
-    while (str[a])
-    {
-	    if (str[a] < '0' || str[a] > '9')
-		    return (0);
-        a++;
-    }
-    return (1);
+t_struct *ft_get_my_struct(void)
+{
+    static t_struct st;
+
+    return (&st);
 }

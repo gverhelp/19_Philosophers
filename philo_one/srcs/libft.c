@@ -1,5 +1,19 @@
 #include "../include/philo_one.h"
 
+int	ft_isdigit(char *str)
+{
+    int a;
+
+    a = 0;
+    while (str[a])
+    {
+	    if (str[a] < '0' || str[a] > '9')
+		    return (0);
+        a++;
+    }
+    return (1);
+}
+
 static int	ft_islong(int sign, unsigned long int value)
 {
 	if (sign == -1 && value == 2147483648)

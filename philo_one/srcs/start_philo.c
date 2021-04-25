@@ -15,6 +15,8 @@ int ft_start_philo(t_struct *st)
     a = 0;
     if (!ft_init_threads(st))
         return (0);
+    st->timer = ft_get_time(st);
+    pthread_create(&st->thread_time, NULL, &ft_time, NULL);
     while (a < st->nbr_of_philo)
     {
         pthread_create(&st->thread[a], NULL, &ft_routine, &st->philo_id[a]);
