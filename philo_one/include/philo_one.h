@@ -19,9 +19,11 @@ struct              s_struct
     int             nbr_of_time_each_philo_must_eat;
     int             *philo_id;
     int             do_we_have_a_dead;
-    long int        *when_did_you_eat;
+    int             *did_he_eat_enough;
+    int             *ate_enough;
+    long int        *when_did_he_eat;
     int             forks;
-    long int        timer;
+    long int        start_timer;
     pthread_t       *thread;
     pthread_t       thread_time;
     pthread_mutex_t *mutex;
@@ -36,12 +38,10 @@ void ft_init_struct(t_struct *st);
 int ft_parsing(t_struct *st, int argc, char **argv);
 int ft_checkargs(int argc, char **argv);
 int ft_get_my_values(t_struct *st, char **argv);
-int ft_give_philo_id(t_struct *st);
 
 ////////// Start philo ////////
 
 int ft_start_philo(t_struct *st);
-int ft_init_threads(t_struct *st);
 
 ////////// Routine /////////////
 
@@ -50,16 +50,24 @@ int ft_philo_is_thinking(t_struct *st, int my_philo);
 int ft_philo_is_eating(t_struct *st, int my_philo);
 int ft_philo_is_sleeping(t_struct *st, int my_philo);
 
-
 //////////// Time /////////////
 
 void *ft_time(void *arg);
+int ft_did_they_eat_enough(t_struct *st);
+int ft_do_we_have_a_dead(t_struct *st);
 int long ft_get_time(t_struct *st);
+
+//////////// Init /////////////
+
+int ft_init(t_struct *st);
+int ft_init_values(t_struct *st);
+int ft_init_threads_and_mutex(t_struct *st);
 
 ////////// Utils //////////////
 
 void ft_init_struct(t_struct *st);
 t_struct *ft_get_my_struct(void);
+void    ft_free();
 
 ////////// libft /////////////
 
