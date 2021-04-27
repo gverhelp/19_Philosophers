@@ -10,8 +10,14 @@ int ft_start_philo(t_struct *st)
     while (a < st->nbr_of_philo)
     {
         pthread_create(&st->thread[a], NULL, &ft_routine, &st->philo_id[a]);
-//        usleep(4000);
+        usleep(4000);
         a++;
     }
+/*    a = 0;
+    while (a < st->nbr_of_philo)
+    {
+        st->did_he_eat_enough[a] = 4;
+        a++;
+    } */
     return (1);
 }

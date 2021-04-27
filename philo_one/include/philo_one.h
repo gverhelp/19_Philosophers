@@ -53,6 +53,7 @@ int ft_philo_is_sleeping(t_struct *st, int my_philo);
 //////////// Time /////////////
 
 void *ft_time(void *arg);
+void    ft_how_many_time_philo_has_to_sleep(t_struct *st);
 int ft_did_they_eat_enough(t_struct *st);
 int ft_do_we_have_a_dead(t_struct *st);
 int long ft_get_time(t_struct *st);
@@ -61,6 +62,7 @@ int long ft_get_time(t_struct *st);
 
 int ft_init(t_struct *st);
 int ft_init_values(t_struct *st);
+int ft_init_values2(t_struct *st);
 int ft_init_threads_and_mutex(t_struct *st);
 
 ////////// Utils //////////////

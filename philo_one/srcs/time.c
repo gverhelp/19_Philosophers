@@ -11,6 +11,11 @@ int long ft_get_time(t_struct *st)
     return (timer - st->start_timer);
 }
 
+void    ft_how_many_time_philo_has_to_sleep(t_struct *st)
+{
+
+}
+
 int ft_did_they_eat_enough(t_struct *st)
 {
     int a;
@@ -31,9 +36,9 @@ int ft_did_they_eat_enough(t_struct *st)
             they_all_ate_enough++;
         a++;
     }
-    if (they_all_ate_enough == st->nbr_of_philo)
+    if (st->nbr_of_time_each_philo_must_eat != 0 && they_all_ate_enough == st->nbr_of_philo)
     {
-        printf("Assez mangé!\n");
+        write(1, "Assez mangé!\n", 14);
         st->do_we_have_a_dead = 1;
         return (0);
     }

@@ -7,9 +7,6 @@ void ft_init_struct(t_struct *st)
     st->time_to_eat = 0;
     st->time_to_sleep = 0;
     st->nbr_of_time_each_philo_must_eat = 0;
-    st->thread = NULL;
-    st->thread_time = 0;
-    st->mutex = NULL;;
     st->philo_id = NULL;
     st->do_we_have_a_dead = 0;
     st->did_he_eat_enough = NULL;
