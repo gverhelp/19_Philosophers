@@ -32,7 +32,6 @@ int ft_get_my_values(t_struct *st, char **argv)
     st->nbr_of_philo = ft_atoi(argv[1]);
     if (st->nbr_of_philo < 2)
         return (0);
-    st->forks = st->nbr_of_philo;
     st->time_to_die = ft_atoi(argv[2]);
     if (st->time_to_die < 0)
         return (0);

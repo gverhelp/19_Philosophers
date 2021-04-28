@@ -14,13 +14,15 @@ int ft_philo_is_eating(t_struct *st, int my_philo)
     (void)time;
     (void)my_philo;
     time = ft_get_time(st);
-//    pthread_mutex_lock(&st->mutex[my_philo]);
-//    st->when_did_he_eat[my_philo] = time;
-//    if (st->do_we_have_a_dead == 0)
-//    st->did_he_eat_enough[my_philo]++;
-//    write(1, "mdr\n", 4);
-//    printf("%d : %d\n", my_philo, st->did_he_eat_enough[my_philo]);
-//    pthread_mutex_unlock(&st->mutex[my_philo]);
+    pthread_mutex_lock(&st->mutex[my_philo]);
+    if (st->do_we_have_a_dead == 0)
+    {
+        printf("%ld %d is eating\n", ft_get_time(st), my_philo + 1);
+        st->when_did_he_eat[my_philo] = ft_get_time(st);
+        st->did_he_eat_enough[my_philo]++;
+        ft_wait(st, st->time_to_eat);
+    }
+    pthread_mutex_unlock(&st->mutex[my_philo]);
     return (0);
 }
 
@@ -34,7 +36,7 @@ int ft_philo_is_sleeping(t_struct *st, int my_philo)
     if (st->do_we_have_a_dead == 0)
     {
         printf("%ld %d is sleeping\n", ft_get_time(st), my_philo + 1);
-        ft_how_many_time_philo_has_to_sleep(st);
+        ft_wait(st, st->time_to_sleep);
     }
     return (0);
 }
@@ -42,10 +44,14 @@ int ft_philo_is_sleeping(t_struct *st, int my_philo)
 void    *ft_routine(void *philo)
 {
     int my_philo;
+    int forks;
     t_struct *st;
 
+    (void)forks;
     my_philo = *(int*)philo;
     st = ft_get_my_struct();
+    forks = st->nbr_of_philo;
+    pthread_detach(*st->thread);
     while (st->do_we_have_a_dead == 0)
     {
         ft_philo_is_thinking(st, my_philo);

@@ -35,7 +35,7 @@ int ft_init_values(t_struct *st)
         return (0);
     while (a < st->nbr_of_philo)
     {
-        st->philo_id[a] = a + 1;
+        st->philo_id[a] = a;
         a++;
     }
     st->did_he_eat_enough = (int*)malloc(sizeof(int) * st->nbr_of_philo);

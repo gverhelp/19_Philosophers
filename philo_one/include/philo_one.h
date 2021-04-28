@@ -22,7 +22,6 @@ struct              s_struct
     int             *did_he_eat_enough;
     int             *ate_enough;
     long int        *when_did_he_eat;
-    int             forks;
     long int        start_timer;
     pthread_t       *thread;
     pthread_t       thread_time;
@@ -53,7 +52,7 @@ int ft_philo_is_sleeping(t_struct *st, int my_philo);
 //////////// Time /////////////
 
 void *ft_time(void *arg);
-void    ft_how_many_time_philo_has_to_sleep(t_struct *st);
+void    ft_wait(t_struct *st, int wait);
 int ft_did_they_eat_enough(t_struct *st);
 int ft_do_we_have_a_dead(t_struct *st);
 int long ft_get_time(t_struct *st);
@@ -69,6 +68,7 @@ int ft_init_threads_and_mutex(t_struct *st);
 
 void ft_init_struct(t_struct *st);
 t_struct *ft_get_my_struct(void);
+void    ft_destroy_mutex(t_struct *st);
 void    ft_free();
 
 ////////// libft /////////////

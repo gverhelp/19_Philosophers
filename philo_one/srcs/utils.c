@@ -12,8 +12,19 @@ void ft_init_struct(t_struct *st)
     st->did_he_eat_enough = NULL;
     st->when_did_he_eat = NULL;
     st->ate_enough = NULL;;
-    st->forks = 0;
     st->start_timer = 0;
+}
+
+void    ft_destroy_mutex(t_struct *st)
+{
+    int a;
+
+    a = 0;
+    while (a < st->nbr_of_philo)
+    {
+        pthread_mutex_destroy(&st->mutex[a]);
+        a++;
+    }
 }
 
 void    ft_free()
