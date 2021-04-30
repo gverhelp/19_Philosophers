@@ -61,11 +61,15 @@ int ft_init_threads_and_mutex(t_struct *st)
     st->mutex = malloc (sizeof(pthread_mutex_t) * st->nbr_of_philo);
     if (!st->mutex)
         return (0);
+    memset(st->thread, 0, st->nbr_of_philo * 8);
+    memset(st->mutex, 0, st->nbr_of_philo * 8);
     while (a < st->nbr_of_philo)
     {
         pthread_mutex_init(&st->mutex[a], NULL);
         a++;
     }
+    pthread_mutex_init(&st->write_mutex, NULL);
+    pthread_mutex_init(&st->dead_mutex, NULL);
     return (1);
 }
 

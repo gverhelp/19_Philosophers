@@ -13,9 +13,8 @@ int long ft_get_time(t_struct *st)
 
 void    ft_wait(t_struct *st, int wait)
 {
-    (void)st;
-/*    int a;
-    int time_now;
+    int a;
+    long int    time_now;
 
     time_now = ft_get_time(st);
     a = 0;
@@ -25,8 +24,7 @@ void    ft_wait(t_struct *st, int wait)
         if (ft_get_time(st) - time_now >= wait)
             break ;
         usleep(100);
-    }*/
-    usleep(wait * 1000);
+    }
 }
 
 int ft_did_they_eat_enough(t_struct *st)
@@ -46,16 +44,16 @@ int ft_did_they_eat_enough(t_struct *st)
     while (a < st->nbr_of_philo)
     {
         if (st->ate_enough[a] == 1)
-        {
-//            printf("%d ate enough : %d\n", a, st->ate_enough[a]);
             they_all_ate_enough++;
-        }
         a++;
     }
     if (they_all_ate_enough == st->nbr_of_philo)
     {
-        write(1, "Assez mangé!\n", 14);
         st->do_we_have_a_dead = 1;
+        pthread_mutex_lock(&st->write_mutex);
+        write(1, "Assez mangé!\n", 14);
+        pthread_mutex_unlock(&st->write_mutex);
+        pthread_mutex_unlock(&st->dead_mutex);
         return (0);
     }
     return (1);
@@ -68,10 +66,13 @@ int ft_do_we_have_a_dead(t_struct *st)
     a = 0;
     while (a < st->nbr_of_philo)
     {
-        if (ft_get_time(st) - st->when_did_he_eat[a] >= st->time_to_die)
+        if (ft_get_time(st) - st->when_did_he_eat[a] > st->time_to_die)
         {
             st->do_we_have_a_dead = 1;
-            printf("%ld %d died\n", ft_get_time(st), a);
+            pthread_mutex_lock(&st->write_mutex);
+            printf("%ld %d died\n", ft_get_time(st), a + 1);
+            pthread_mutex_unlock(&st->write_mutex);
+            pthread_mutex_unlock(&st->dead_mutex);
             return (0);
         }
         a++;
@@ -92,6 +93,7 @@ void    *ft_time(void *arg)
                 return (NULL);
         if (!ft_do_we_have_a_dead(st))
             return (NULL);
+        usleep(4000);
     }
     return (NULL);
 }

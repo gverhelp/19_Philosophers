@@ -26,6 +26,8 @@ struct              s_struct
     pthread_t       *thread;
     pthread_t       thread_time;
     pthread_mutex_t *mutex;
+    pthread_mutex_t write_mutex;
+    pthread_mutex_t dead_mutex;
 };
 
 /////////// main /////////////
@@ -38,15 +40,11 @@ int ft_parsing(t_struct *st, int argc, char **argv);
 int ft_checkargs(int argc, char **argv);
 int ft_get_my_values(t_struct *st, char **argv);
 
-////////// Start philo ////////
-
-int ft_start_philo(t_struct *st);
-
 ////////// Routine /////////////
 
 void *ft_routine(void *philo);
 int ft_philo_is_thinking(t_struct *st, int my_philo);
-int ft_philo_is_eating(t_struct *st, int my_philo);
+int ft_philo_is_eating(t_struct *st, int my_philo, int fork, int next_fork);
 int ft_philo_is_sleeping(t_struct *st, int my_philo);
 
 //////////// Time /////////////

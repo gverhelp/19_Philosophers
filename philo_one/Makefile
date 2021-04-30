@@ -1,6 +1,5 @@
 SRCS =		srcs/main.c \
 			srcs/parsing.c \
-			srcs/start_philo.c \
 			srcs/routine.c \
 			srcs/time.c \
 			srcs/ft_init.c \

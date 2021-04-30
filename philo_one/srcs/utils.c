@@ -25,6 +25,8 @@ void    ft_destroy_mutex(t_struct *st)
         pthread_mutex_destroy(&st->mutex[a]);
         a++;
     }
+    pthread_mutex_destroy(&st->write_mutex);
+    pthread_mutex_destroy(&st->dead_mutex);
 }
 
 void    ft_free()
