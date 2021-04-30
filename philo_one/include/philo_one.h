@@ -42,6 +42,7 @@ int ft_get_my_values(t_struct *st, char **argv);
 
 ////////// Routine /////////////
 
+int ft_start_philo(t_struct *st);
 void *ft_routine(void *philo);
 int ft_philo_is_thinking(t_struct *st, int my_philo);
 int ft_philo_is_eating(t_struct *st, int my_philo, int fork, int next_fork);

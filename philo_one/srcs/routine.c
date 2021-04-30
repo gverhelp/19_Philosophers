@@ -14,11 +14,14 @@ int ft_philo_is_thinking(t_struct *st, int my_philo)
 int ft_philo_is_eating(t_struct *st, int my_philo, int fork, int next_fork)
 {
     pthread_mutex_lock(&st->mutex[fork]);
+    pthread_mutex_lock(&st->write_mutex);
+    printf("%ld %d has taken a fork\n", ft_get_time(st), my_philo + 1);
+    pthread_mutex_unlock(&st->write_mutex);
     pthread_mutex_lock(&st->mutex[next_fork]);
     if (st->do_we_have_a_dead == 0)
     {
         pthread_mutex_lock(&st->write_mutex);
-        printf("%ld %d has taken a fork\n", ft_get_time(st), my_philo + 1);
+//        printf("%ld %d has taken a fork\n", ft_get_time(st), my_philo + 1);
         printf("%ld %d is eating\n", ft_get_time(st), my_philo + 1);
         pthread_mutex_unlock(&st->write_mutex);
         st->when_did_he_eat[my_philo] = ft_get_time(st);
