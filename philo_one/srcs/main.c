@@ -12,5 +12,6 @@ int main(int argc, char **argv)
         return (0);
     if (!ft_start_philo(st))
         return (0);
+    ft_free(st);
     return (0);
 }

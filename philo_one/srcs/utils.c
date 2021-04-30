@@ -1,18 +1,10 @@
 #include "../include/philo_one.h"
 
-void ft_init_struct(t_struct *st)
+void    ft_print(t_struct *st, int philo, char *str)
 {
-    st->nbr_of_philo = 0;
-    st->time_to_die = 0;
-    st->time_to_eat = 0;
-    st->time_to_sleep = 0;
-    st->nbr_of_time_each_philo_must_eat = 0;
-    st->philo_id = NULL;
-    st->do_we_have_a_dead = 0;
-    st->did_he_eat_enough = NULL;
-    st->when_did_he_eat = NULL;
-    st->ate_enough = NULL;;
-    st->start_timer = 0;
+    pthread_mutex_lock(&st->write_mutex);
+    printf("%ld %d %s\n", ft_get_time(st), philo, str);
+    pthread_mutex_unlock(&st->write_mutex);
 }
 
 void    ft_destroy_mutex(t_struct *st)
@@ -29,9 +21,14 @@ void    ft_destroy_mutex(t_struct *st)
     pthread_mutex_destroy(&st->dead_mutex);
 }
 
-void    ft_free()
+void    ft_free(t_struct *st)
 {
-    
+    free(st->ate_enough);
+    free(st->philo_id);
+    free(st->when_did_he_eat);
+    free(st->did_he_eat_enough);
+    free(st->thread);
+    free(st->mutex);
 }
 
 t_struct *ft_get_my_struct(void)

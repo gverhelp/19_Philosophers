@@ -1,6 +1,6 @@
 #include "../include/philo_one.h"
 
-int ft_checkargs(int argc, char **argv)
+int ft_check_args(int argc, char **argv)
 {
     int a;
 
@@ -50,7 +50,7 @@ int ft_get_my_values(t_struct *st, char **argv)
 
 int ft_parsing(t_struct *st, int argc, char **argv)
 {
-    if (!ft_checkargs(argc, argv))
+    if (!ft_check_args(argc, argv))
         return (0);
     if (!ft_get_my_values(st, argv))
     {
