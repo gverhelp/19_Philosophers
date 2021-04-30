@@ -17,7 +17,7 @@ int	ft_isdigit(char *str)
 static int	ft_islong(int sign, unsigned long int value)
 {
 	if (sign == -1 && value == 2147483648)
-		return (value *sign);
+		return (value * sign);
 	if (sign == -1)
 		return (0);
 	else
