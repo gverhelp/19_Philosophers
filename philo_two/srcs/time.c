@@ -1,4 +1,4 @@
-#include "../include/philo_one.h"
+#include "../include/philo_two.h"
 
 int long	ft_get_time(t_struct *st)
 {
@@ -48,8 +48,8 @@ int	ft_did_they_eat_enough(t_struct *st)
 	if (they_all_ate_enough == st->nbr_of_philo)
 	{
 		st->do_we_have_a_dead = 1;
-    	pthread_mutex_lock(&st->write_mutex);
-//		pthread_mutex_unlock(&st->dead_mutex);
+//      pthread_mutex_lock(&st->write_mutex);
+		pthread_mutex_unlock(&st->dead_mutex);
 		return (0);
 	}
 	return (1);
@@ -65,10 +65,8 @@ int	ft_do_we_have_a_dead(t_struct *st)
 		if (ft_get_time(st) - st->when_did_he_eat[a] > st->time_to_die)
 		{
 			st->do_we_have_a_dead = 1;
-//			ft_print(st, a + 1, "died");
-			pthread_mutex_lock(&st->write_mutex);
-			printf("%ld %d died\n", ft_get_time(st), a + 1);
-//			pthread_mutex_unlock(&st->dead_mutex);
+			ft_print(st, a + 1, "died");
+			pthread_mutex_unlock(&st->dead_mutex);
 			return (0);
 		}
 		a++;
