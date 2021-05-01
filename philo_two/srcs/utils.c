@@ -2,23 +2,9 @@
 
 void	ft_print(t_struct *st, int philo, char *str)
 {
-	pthread_mutex_lock(&st->write_mutex);
+	sem_wait(st->sem_write);
 	printf("%ld %d %s\n", ft_get_time(st), philo, str);
-	pthread_mutex_unlock(&st->write_mutex);
-}
-
-void	ft_destroy_mutex(t_struct *st)
-{
-	int	a;
-
-	a = 0;
-	while (a < st->nbr_of_philo)
-	{
-		pthread_mutex_destroy(&st->mutex[a]);
-		a++;
-	}
-	pthread_mutex_destroy(&st->write_mutex);
-	pthread_mutex_destroy(&st->dead_mutex);
+	sem_post(st->sem_write);
 }
 
 void	ft_free(t_struct *st)
@@ -28,7 +14,6 @@ void	ft_free(t_struct *st)
 	free(st->when_did_he_eat);
 	free(st->did_he_eat_enough);
 	free(st->thread);
-	free(st->mutex);
 }
 
 t_struct	*ft_get_my_struct(void)

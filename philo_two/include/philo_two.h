@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <fcntl.h>
 # include <semaphore.h>
 
 typedef struct s_struct	t_struct;
@@ -26,9 +27,9 @@ struct					s_struct
 	long int		start_timer;
 	pthread_t		*thread;
 	pthread_t		thread_time;
-	pthread_mutex_t	*mutex;
-	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	dead_mutex;
+	sem_t			*sem_forks;
+	sem_t			*sem_write;
+	sem_t			*sem_dead;
 };
 
 /////////// main /////////////
@@ -46,8 +47,7 @@ int			ft_get_my_values(t_struct *st, char **argv);
 int			ft_start_philo(t_struct *st);
 void		*ft_routine(void *philo);
 int			ft_philo_is_thinking(t_struct *st, int my_philo);
-int			ft_philo_is_eating(t_struct *st, int my_philo,
-				int left_fork, int right_fork);
+int			ft_philo_is_eating(t_struct *st, int my_philo);
 int			ft_philo_is_sleeping(t_struct *st, int my_philo);
 
 //////////// Time /////////////
@@ -64,12 +64,11 @@ int			ft_init(t_struct *st);
 int			ft_init_values(t_struct *st);
 int			ft_init_values2(t_struct *st);
 void		ft_init_struct(t_struct *st);
-int			ft_init_threads_and_mutex(t_struct *st);
+int			ft_init_threads_and_sem(t_struct *st);
 
 ////////// Utils //////////////
 
 t_struct	*ft_get_my_struct(void);
-void		ft_destroy_mutex(t_struct *st);
 void		ft_free(t_struct *st);
 void		ft_print(t_struct *st, int philo, char *str);
 

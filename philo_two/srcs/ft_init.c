@@ -66,26 +66,24 @@ int	ft_init_values(t_struct *st)
 	return (ft_init_values2(st));
 }
 
-int	ft_init_threads_and_mutex(t_struct *st)
+int	ft_init_threads_and_sem(t_struct *st)
 {
-	int	a;
-
-	a = 0;
 	st->thread = malloc(sizeof(pthread_t) * st->nbr_of_philo);
 	if (!st->thread)
 		return (0);
-	st->mutex = malloc (sizeof(pthread_mutex_t) * st->nbr_of_philo);
-	if (!st->mutex)
-		return (0);
 	memset(st->thread, 0, st->nbr_of_philo * 8);
-	memset(st->mutex, 0, st->nbr_of_philo * 8);
-	while (a < st->nbr_of_philo)
-	{
-		pthread_mutex_init(&st->mutex[a], NULL);
-		a++;
-	}
-	pthread_mutex_init(&st->write_mutex, NULL);
-	pthread_mutex_init(&st->dead_mutex, NULL);
+	sem_unlink("sem_forks");
+	sem_unlink("sem_write");
+	sem_unlink("sem_dead");
+	st->sem_forks = sem_open("sem_forks", O_CREAT, 0644, st->nbr_of_philo);
+	if (st->sem_forks == SEM_FAILED)
+		return (0);
+	st->sem_write = sem_open("sem_write", O_CREAT, 0644, 1);
+	if (st->sem_write == SEM_FAILED)
+		return (0);
+	st->sem_dead = sem_open("sem_dead", O_CREAT, 0644, 1);
+	if (st->sem_dead == SEM_FAILED)
+		return (0);
 	return (1);
 }
 
@@ -93,7 +91,7 @@ int	ft_init(t_struct *st)
 {
 	if (!ft_init_values(st))
 		return (0);
-	if (!ft_init_threads_and_mutex(st))
+	if (!ft_init_threads_and_sem(st))
 		return (0);
 	return (1);
 }
