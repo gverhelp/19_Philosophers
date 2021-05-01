@@ -69,13 +69,14 @@ int	ft_start_philo(t_struct *st)
 	a = 0;
 	st->start_timer = ft_get_time(st);
 	pthread_create(&st->thread_time, NULL, &ft_time, NULL);
-	pthread_mutex_lock(&st->dead_mutex);
+//	pthread_mutex_lock(&st->dead_mutex);
 	while (a < st->nbr_of_philo)
 	{
 		pthread_create(&st->thread[a], NULL, &ft_routine, &st->philo_id[a]);
 		a++;
 	}
-	pthread_mutex_lock(&st->dead_mutex);
+//	pthread_mutex_lock(&st->dead_mutex);
+	ft_join_threads(st);
 	ft_destroy_mutex(st);
 	return (1);
 }

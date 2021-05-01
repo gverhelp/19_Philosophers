@@ -85,7 +85,7 @@ int	ft_init_threads_and_mutex(t_struct *st)
 		a++;
 	}
 	pthread_mutex_init(&st->write_mutex, NULL);
-	pthread_mutex_init(&st->dead_mutex, NULL);
+//	pthread_mutex_init(&st->dead_mutex, NULL);
 	return (1);
 }
 

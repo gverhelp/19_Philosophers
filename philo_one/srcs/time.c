@@ -48,8 +48,8 @@ int	ft_did_they_eat_enough(t_struct *st)
 	if (they_all_ate_enough == st->nbr_of_philo)
 	{
 		st->do_we_have_a_dead = 1;
-//        pthread_mutex_lock(&st->write_mutex);
-		pthread_mutex_unlock(&st->dead_mutex);
+//      pthread_mutex_lock(&st->write_mutex);
+//		pthread_mutex_unlock(&st->dead_mutex);
 		return (0);
 	}
 	return (1);
@@ -66,7 +66,7 @@ int	ft_do_we_have_a_dead(t_struct *st)
 		{
 			st->do_we_have_a_dead = 1;
 			ft_print(st, a + 1, "died");
-			pthread_mutex_unlock(&st->dead_mutex);
+//			pthread_mutex_unlock(&st->dead_mutex);
 			return (0);
 		}
 		a++;

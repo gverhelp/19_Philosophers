@@ -27,7 +27,7 @@ struct					s_struct
 	pthread_t		thread_time;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	dead_mutex;
+//	pthread_mutex_t	dead_mutex;
 };
 
 /////////// main /////////////
@@ -69,6 +69,7 @@ int			ft_init_threads_and_mutex(t_struct *st);
 
 t_struct	*ft_get_my_struct(void);
 void		ft_destroy_mutex(t_struct *st);
+void		ft_join_threads(t_struct *st);
 void		ft_free(t_struct *st);
 void		ft_print(t_struct *st, int philo, char *str);
 
