@@ -7,19 +7,6 @@ void	ft_print(t_struct *st, int philo, char *str)
 	pthread_mutex_unlock(&st->write_mutex);
 }
 
-void	ft_join_threads(t_struct *st)
-{
-	int	a;
-
-	a = 0;
-	while (a < st->nbr_of_philo)
-	{
-		pthread_join(st->thread[a], NULL);
-		a++;
-	}
-	pthread_join(st->thread_time, NULL);
-}
-
 void	ft_destroy_mutex(t_struct *st)
 {
 	int	a;

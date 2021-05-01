@@ -71,7 +71,6 @@ t_struct	*ft_get_my_struct(void);
 void		ft_destroy_mutex(t_struct *st);
 void		ft_free(t_struct *st);
 void		ft_print(t_struct *st, int philo, char *str);
-void	ft_join_threads(t_struct *st);
 
 ////////// libft /////////////
 
