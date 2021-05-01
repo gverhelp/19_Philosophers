@@ -27,7 +27,7 @@ struct					s_struct
 	pthread_t		thread_time;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	write_mutex;
-//	pthread_mutex_t	dead_mutex;
+	pthread_mutex_t	dead_mutex;
 };
 
 /////////// main /////////////
