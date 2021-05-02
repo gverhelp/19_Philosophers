@@ -17,6 +17,7 @@ void	ft_close_sem(t_struct *st)
 		pthread_detach(st->thread[a]);
 		a++;
 	}
+	pthread_detach(st->thread_time);
 	sem_close(st->sem_forks);
 	sem_close(st->sem_write);
 	sem_close(st->sem_dead);
