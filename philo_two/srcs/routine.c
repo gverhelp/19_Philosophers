@@ -51,9 +51,9 @@ void	*ft_routine(void *philo)
 		ft_print(st, my_philo + 1, "has taken a fork");
 		sem_wait(st->sem_forks);
 		ft_philo_is_eating(st, my_philo);
+		sem_post(st->sem_forks);
+		sem_post(st->sem_forks);
 		ft_philo_is_sleeping(st, my_philo);
-		sem_post(st->sem_forks);
-		sem_post(st->sem_forks);
 	}
 	return (NULL);
 }
