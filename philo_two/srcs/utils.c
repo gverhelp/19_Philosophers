@@ -7,6 +7,21 @@ void	ft_print(t_struct *st, int philo, char *str)
 	sem_post(st->sem_write);
 }
 
+void	ft_close_sem(t_struct *st)
+{
+	int a;
+
+	a = 0;
+	while (a < st->nbr_of_philo)
+	{
+		pthread_detach(st->thread[a]);
+		a++;
+	}
+	sem_close(st->sem_forks);
+	sem_close(st->sem_write);
+	sem_close(st->sem_dead);
+}
+
 void	ft_free(t_struct *st)
 {
 	free(st->ate_enough);

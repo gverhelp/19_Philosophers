@@ -71,6 +71,7 @@ int			ft_init_threads_and_sem(t_struct *st);
 t_struct	*ft_get_my_struct(void);
 void		ft_free(t_struct *st);
 void		ft_print(t_struct *st, int philo, char *str);
+void		ft_close_sem(t_struct *st);
 
 ////////// libft /////////////
 

@@ -14,6 +14,7 @@ void	ft_destroy_mutex(t_struct *st)
 	a = 0;
 	while (a < st->nbr_of_philo)
 	{
+		pthread_detach(st->thread[a]);
 		pthread_mutex_destroy(&st->mutex[a]);
 		a++;
 	}
