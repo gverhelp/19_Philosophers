@@ -66,6 +66,6 @@ int	ft_start_philo(t_struct *st)
 		a++;
 	}
 	sem_wait(st->sem_dead);
-	ft_close_sem(st);
+	ft_detach_thread(st);
 	return (1);
 }
