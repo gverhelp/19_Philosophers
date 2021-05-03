@@ -50,7 +50,7 @@ int	ft_did_they_eat_enough(t_struct *st)
 		st->do_we_have_a_dead = 1;
 		sem_wait(st->sem_write);
 		sem_post(st->sem_dead);
-		return (0);
+		return (NULL);
 	}
 	return (1);
 }

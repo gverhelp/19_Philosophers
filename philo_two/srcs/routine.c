@@ -58,8 +58,8 @@ int	ft_start_philo(t_struct *st)
 
 	a = 0;
 	st->start_timer = ft_get_time(st);
-	pthread_create(&st->thread_time, NULL, &ft_time, NULL);
 	sem_wait(st->sem_dead);
+	pthread_create(&st->thread_time, NULL, &ft_time, NULL);
 	while (a < st->nbr_of_philo)
 	{
 		pthread_create(&st->thread[a], NULL, &ft_routine, &st->philo_id[a]);
