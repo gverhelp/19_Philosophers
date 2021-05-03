@@ -25,7 +25,7 @@ int	ft_init_values(t_struct *st)
 		return (0);
 	while (a < st->nbr_of_philo)
 	{
-		st->pid[a] = a;
+		st->pid[a] = 0;
 		a++;
 	}
 	return (1);

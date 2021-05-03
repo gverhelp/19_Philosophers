@@ -44,7 +44,7 @@ int	ft_do_we_have_a_dead(t_struct *st)
 			while (b < st->nbr_of_philo)
 			{
 				sem_post(st->sem_ate);
-				a++;
+				b++;
 			}
 			return (0);
 		}
