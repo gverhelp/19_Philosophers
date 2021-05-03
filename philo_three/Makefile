@@ -1,4 +1,10 @@
-SRCS =		main.c
+SRCS =		srcs/main.c \
+			srcs/parsing.c \
+			srcs/routine.c \
+			srcs/time.c \
+			srcs/ft_init.c \
+			srcs/utils.c \
+			srcs/libft.c \
 
 OBJS = 		$(SRCS:%.c=%.o)
 

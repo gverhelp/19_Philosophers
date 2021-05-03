@@ -13,7 +13,7 @@ int	ft_philo_is_eating(t_struct *st, int my_philo)
 	{
 		st->when_did_he_eat[my_philo] = ft_get_time(st);
 		st->did_he_eat_enough[my_philo]++;
-//		ft_print(st, my_philo + 1, "has taken a fork");
+		ft_print(st, my_philo + 1, "has taken a fork");
 		ft_print(st, my_philo + 1, "is eating");
 		ft_wait(st, st->time_to_eat);
 	}

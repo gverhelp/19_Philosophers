@@ -1,4 +1,4 @@
-#include "../include/philo_two.h"
+#include "../include/philo_three.h"
 
 void	ft_print(t_struct *st, int philo, char *str)
 {
@@ -14,22 +14,24 @@ void	ft_close_sem(t_struct *st)
 	a = 0;
 	while (a < st->nbr_of_philo)
 	{
-		pthread_detach(st->thread[a]);
+		kill(st->pid[a], SIGKILL);
+		a++;
+	}
+	a = 0;
+	while (a < st->nbr_of_philo)
+	{
+		sem_wait(st->sem_ate);
 		a++;
 	}
 	pthread_detach(st->thread_time);
 	sem_close(st->sem_forks);
 	sem_close(st->sem_write);
-	sem_close(st->sem_dead);
+	sem_close(st->sem_ate);
 }
 
 void	ft_free(t_struct *st)
 {
-	free(st->ate_enough);
-	free(st->philo_id);
-	free(st->when_did_he_eat);
-	free(st->did_he_eat_enough);
-	free(st->thread);
+	free(st->pid);
 }
 
 t_struct	*ft_get_my_struct(void)

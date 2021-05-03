@@ -73,14 +73,14 @@ int	ft_init_threads_and_sem(t_struct *st)
 		return (0);
 	memset(st->thread, 0, st->nbr_of_philo * 8);
 	sem_unlink("sem_forks");
-	sem_unlink("sem_write");
-	sem_unlink("sem_dead");
 	st->sem_forks = sem_open("sem_forks", O_CREAT, 0644, st->nbr_of_philo);
 	if (st->sem_forks == SEM_FAILED)
 		return (0);
+	sem_unlink("sem_write");
 	st->sem_write = sem_open("sem_write", O_CREAT, 0644, 1);
 	if (st->sem_write == SEM_FAILED)
 		return (0);
+	sem_unlink("sem_dead");
 	st->sem_dead = sem_open("sem_dead", O_CREAT, 0644, 1);
 	if (st->sem_dead == SEM_FAILED)
 		return (0);
