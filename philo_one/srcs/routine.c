@@ -51,6 +51,7 @@ void	*ft_routine(void *philo)
 	{
 		right_fork = my_philo;
 		left_fork = (right_fork + 1) % st->nbr_of_philo;
+		usleep(500);
 	}
 	st->when_did_he_eat[my_philo] = ft_get_time(st);
 	while (st->do_we_have_a_dead == 0)
