@@ -9,6 +9,9 @@ int	ft_philo_is_thinking(t_struct *st, int my_philo)
 
 int	ft_philo_is_eating(t_struct *st, int my_philo)
 {
+	sem_wait(st->sem_forks);
+	sem_wait(st->sem_forks);
+	ft_print(st, my_philo + 1, "has taken a fork");
 	if (st->do_we_have_a_dead == 0)
 	{
 		st->when_did_he_eat[my_philo] = ft_get_time(st);
@@ -17,6 +20,8 @@ int	ft_philo_is_eating(t_struct *st, int my_philo)
 		ft_print(st, my_philo + 1, "is eating");
 		ft_wait(st, st->time_to_eat);
 	}
+	sem_post(st->sem_forks);
+	sem_post(st->sem_forks);
 	return (0);
 }
 
@@ -41,12 +46,7 @@ void	*ft_routine(void *philo)
 	while (st->do_we_have_a_dead == 0)
 	{
 		ft_philo_is_thinking(st, my_philo);
-		sem_wait(st->sem_forks);
-		sem_wait(st->sem_forks);
-		ft_print(st, my_philo + 1, "has taken a fork");
 		ft_philo_is_eating(st, my_philo);
-		sem_post(st->sem_forks);
-		sem_post(st->sem_forks);
 		ft_philo_is_sleeping(st, my_philo);
 	}
 	return (NULL);

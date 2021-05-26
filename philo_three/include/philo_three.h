@@ -29,7 +29,7 @@ struct					s_struct
 	pthread_t		thread_time;
 	sem_t			*sem_forks;
 	sem_t			*sem_write;
-	sem_t			*sem_ate;
+	sem_t			*sem_dead;
 };
 
 /////////// main /////////////

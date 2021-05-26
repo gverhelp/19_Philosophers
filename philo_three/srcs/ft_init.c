@@ -41,9 +41,9 @@ int	ft_init_threads_and_sem(t_struct *st)
 	st->sem_write = sem_open("sem_write", O_CREAT, 0644, 1);
 	if (st->sem_write == SEM_FAILED)
 		return (0);
-	sem_unlink("sem_ate");
-	st->sem_ate = sem_open("sem_ate", O_CREAT, 0644, st->nbr_of_philo);
-	if (st->sem_ate == SEM_FAILED)
+	sem_unlink("sem_dead");
+	st->sem_dead = sem_open("sem_dead", O_CREAT, 0644, st->nbr_of_philo);
+	if (st->sem_dead == SEM_FAILED)
 		return (0);
 	return (1);
 }

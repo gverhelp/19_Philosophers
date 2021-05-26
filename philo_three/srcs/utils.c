@@ -14,7 +14,7 @@ void	ft_close_sem(t_struct *st)
 	a = 0;
 	while (a < st->nbr_of_philo)
 	{
-		sem_wait(st->sem_ate);
+		sem_wait(st->sem_dead);
 		a++;
 	}
 	a = 0;
@@ -23,10 +23,6 @@ void	ft_close_sem(t_struct *st)
 		kill(st->pid[a], SIGKILL);
 		a++;
 	}
-//	pthread_detach(st->thread_time);
-//	sem_close(st->sem_forks);
-//	sem_close(st->sem_write);
-//	sem_close(st->sem_ate);
 }
 
 void	ft_free(t_struct *st)

@@ -43,7 +43,7 @@ int	ft_do_we_have_a_dead(t_struct *st)
 			printf("%ld %d died\n", ft_get_time(st), a + 1);
 			while (b < st->nbr_of_philo)
 			{
-				sem_post(st->sem_ate);
+				sem_post(st->sem_dead);
 				b++;
 			}
 			return (0);
