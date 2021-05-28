@@ -77,9 +77,5 @@ void		ft_detach_thread(t_struct *st);
 
 int			ft_atoi(const char *str);
 int			ft_isdigit(char *str);
-char		*ft_strdup(const char *src);
-char		*ft_itoa(int n);
-char		*ft_strjoin(char const *s1, char const *s2);
-size_t		ft_strlen(const char *str);
 
 #endif
